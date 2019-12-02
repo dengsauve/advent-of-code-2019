@@ -1,14 +1,14 @@
 # Advent of Code - 2019
 My code used to solve the problems in Advent of Code, 2019.
 
-# Notes on each challenge
+## Notes on each challenge
 
-## Day 01
+### Day 01
 
 This was a fairly simple challeng - get the fuel needed for the cargo modules, then get the fuel needed for the fuel.
 I took a recursive approach to solving fuel for fuel.
 
-## Day 02
+### Day 02
 
 This one was a little more difficult just because there was so much going on on the challenge page story wise.
 The gist was to create a parser for intcode program input. 
