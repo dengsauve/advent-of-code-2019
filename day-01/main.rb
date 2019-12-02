@@ -1,6 +1,6 @@
-require_relative './aoc_lib.rb'
+require_relative '../lib/aoc_lib.rb'
 
-input = open("01input.txt").readlines()
+input = open("input.txt").readlines()
 
 fc = FuelCalculator.new(input)
 

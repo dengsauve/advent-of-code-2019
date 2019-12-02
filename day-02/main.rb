@@ -1,6 +1,6 @@
-require_relative './aoc_lib.rb'
+require_relative '../lib/aoc_lib.rb'
 
-input = open("02input.txt").read().split(',')
+input = open("input.txt").read().split(',')
 intcomp = IntComp.new(input)
 
 100.times do |a|
