@@ -26,3 +26,13 @@ What a kludge, would have been done sooner with part two if I had separated my l
 Part 1 entailed parsing cardinal direction + distance commands, tracking intersection points, and eventually finding the intersection point between two lines with the least "manhattan distance" between it and the origin.
 
 Part 2 was similar, except you had to find the intersection closest to the origin by number of steps. This involved "tracing" each wire, keeping track of the number of steps at each intersection, and finding the intersection with the least total number of steps from the origin.
+
+### Day 04
+
+Part one was deceptively easy, ended up just bruteforcing the pattern check.
+I lost some time thinking about how I was going to optimize,
+but it turns out that the I had a little less than 400000 numbers to check.
+
+Part two was a little more wicked, and I got caught up trying to outsmart my earlier logic.
+My final solution was a bit more elegant. I just checked for ascending order,
+then sent that array to check against a pattern set for a clean pair of doubles.
