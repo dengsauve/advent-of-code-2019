@@ -52,7 +52,12 @@ class IntComp
         @program = program
         @ADD = 1
         @MULTIPLY = 2
+        @STORE = 3
+        @READ = 4
         @STOP = 99
+        @POS = 0
+        @IMM = 1
+        @DEBUG = true && false
     end
 
     ##
@@ -71,21 +76,104 @@ class IntComp
         program[2] = b if b
 
         while (opcode != @STOP && pointer < program.length) do 
-            opcode = program[pointer].to_i
-            
-            break if(opcode == @STOP)
-            
-            position_a = program[program[pointer + 1].to_i].to_i
-            position_b = program[program[pointer + 2].to_i].to_i
-            position_c = program[pointer + 3].to_i
-            
-            if(opcode == @ADD)
-                program[position_c] = position_a + position_b
-            elsif(opcode == @MULTIPLY)
-                program[position_c] = position_a * position_b
-            end
+            puts "pointer: #{pointer}" if @DEBUG
+            opcode = program[pointer]
 
-            pointer += 4
+            if(opcode.to_s.length > 2)
+                opcode = opcode.to_s
+                # need to parse that fancy code
+                instruction = opcode[-2..-1].to_i
+                puts "instruction: #{instruction}\nopcode: #{opcode}" if @DEBUG
+                
+                break if(instruction == @STOP)
+                
+                if (opcode.length == 3)
+                    puts "length: 3" if @DEBUG
+                    a = 0
+                    b = 0
+                    c = opcode[0].to_i
+                elsif (opcode.length == 4)
+                    puts "length: 4" if @DEBUG
+                    a = 0
+                    b = opcode[0].to_i
+                    c = opcode[1].to_i
+                elsif (opcode.length == 5)
+                    puts "length: 5" if @DEBUG
+                    a = opcode[0].to_i
+                    b = opcode[1].to_i
+                    c = opcode[2].to_i
+                end
+                                
+                if(instruction == @ADD || instruction == @MULTIPLY)
+                    puts "a: #{a}\nb: #{b}\nc: #{c}\n" if @DEBUG
+                    position_a = program[program[pointer + 1].to_i].to_i if c == 0
+                    position_a = program[pointer + 1].to_i if c == 1
+
+                    position_b = program[program[pointer + 2].to_i].to_i if b == 0
+                    position_b = program[pointer + 2].to_i if b == 1
+
+                    position_c = program[pointer + 3].to_i #if a == 0
+                    #position_c = program[pointer + 3].to_i if a == 1
+                
+                    if(instruction == @ADD)
+                        program[position_c] = position_a + position_b
+                    elsif(instruction == @MULTIPLY)
+                        program[position_c] = position_a * position_b
+                    end
+                    pointer += 4
+                    puts "incrementing pointer by 4" if @DEBUG
+                end
+
+                if(instruction == @READ)
+                    puts "\nSTATUS: #{program[pointer + 1]}\n"
+                    pointer += 2
+                    puts "incrementing pointer by 2" if @DEBUG
+                end
+
+                if(instruction == @STORE)
+                    print "input: "
+                    number = gets.strip
+                    target = program[pointer + 1].to_i
+                    program[target] = number.to_i
+                    pointer += 2
+                    puts "incrementing pointer by 2" if @DEBUG
+                end
+            else
+                opcode = opcode.to_i
+                puts "ONLY opcode: #{opcode}" if @DEBUG
+                break if(opcode == @STOP)
+                
+                if(opcode == @ADD || opcode == @MULTIPLY)
+                    position_a = program[program[pointer + 1].to_i].to_i
+                    position_b = program[program[pointer + 2].to_i].to_i
+                    position_c = program[pointer + 3].to_i
+                
+                    if(opcode == @ADD)
+                        program[position_c] = position_a + position_b
+                    elsif(opcode == @MULTIPLY)
+                        program[position_c] = position_a * position_b
+                    end
+                    pointer += 4
+                    puts "incrementing pointer by 4" if @DEBUG
+                end
+    
+                if(opcode == @STORE)
+                    print "input: "
+                    number = gets.strip
+                    target = program[pointer + 1].to_i
+                    program[target] = number.to_i
+                    puts "stored #{number} at #{target}" if @DEBUG
+                    pointer += 2
+                    puts "incrementing pointer by 2" if @DEBUG
+                end
+    
+                if(opcode == @READ)
+                    puts "\nSTATUS: #{program[pointer + 1]}\n"
+                    pointer += 2
+                    puts "incrementing pointer by 2" if @DEBUG
+                end
+            end
+            gets if @DEBUG
         end
 
         return program[0]
