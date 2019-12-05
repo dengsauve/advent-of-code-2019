@@ -168,7 +168,7 @@ class IntComp
                 end
     
                 if(opcode == @READ)
-                    puts "\nSTATUS: #{program[pointer + 1]}\n"
+                    puts "\nSTATUS: #{program[program[pointer + 1].to_i]}\n"
                     pointer += 2
                     puts "incrementing pointer by 2" if @DEBUG
                 end
