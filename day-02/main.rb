@@ -1,7 +1,7 @@
 require_relative '../lib/aoc_lib.rb'
 
 input = open("input.txt").read().split(',')
-intcomp = IntComp.new(input)
+intcomp = IntCodeComputer.new(input)
 
 100.times do |a|
     100.times do |b|
