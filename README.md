@@ -36,3 +36,9 @@ but it turns out that the I had a little less than 400000 numbers to check.
 Part two was a little more wicked, and I got caught up trying to outsmart my earlier logic.
 My final solution was a bit more elegant. I just checked for ascending order,
 then sent that array to check against a pattern set for a clean pair of doubles.
+
+### Day 05
+
+I was sick this day, and hit hardest after 7. I spent about 80 minutes on this challenge, couldn't get part 1, and went to bed.
+
+I woke up the next day, still sick, but was able to finish part 1 in 3 minutes. Part 2 took a bit longer, but finally got it. I'm planning on refactoring the IntCode Computer class before tonight's challenge.
