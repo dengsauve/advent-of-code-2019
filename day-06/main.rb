@@ -28,18 +28,19 @@ end
 def part_two(input)
     space_objects = create_space_objects(input)
 
+    # Grab you and santa, and get the direct paths to COM
     you = space_objects["YOU"]
     san = space_objects["SAN"]
-
     you_com = you.path_to_com.reverse
     san_com = san.path_to_com.reverse
 
+    # Determine where the direct paths from COM to you and santa diverge
     index = 0
-
     while you_com[index + 1] == san_com[index + 1] do
         index += 1
     end
 
+    # Using the diverged 
     you_com = you_com[index..-1]
     san_com = san_com[index..-1]
 
