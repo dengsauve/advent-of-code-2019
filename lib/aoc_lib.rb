@@ -5,6 +5,54 @@ require_relative 'int_code_computer.rb'
 
 
 ##
+# SpaceObject
+class SpaceObject
+
+    attr_accessor :orbits
+    def initialize(name, orbits)
+        @name = name.strip
+        @COM = name == "COM"
+        @orbits = orbits
+    end
+
+    def is_com?
+        @COM
+    end
+
+    def to_s
+        return "COM" if @COM
+        "#{@name} orbits #{@orbits}"
+    end
+
+    def indirect_orbits(count=-1)
+        unless @COM
+            if @orbits
+                return @orbits.indirect_orbits(count + 1)
+            else
+                return count
+            end
+        else
+            return count >= 0 ? count : 0
+        end
+    end
+
+    def path_to_com(path=[])
+        path.push(@name)
+        unless @COM
+            if @orbits
+                return @orbits.path_to_com(path)
+            else
+                return path
+            end
+        else
+            return path
+        end
+    end
+
+end
+
+
+##
 # FuelCalculator takes a list modules' masses, and can return the amount of
 #   fuel needed to launch that payload into space
 class FuelCalculator
