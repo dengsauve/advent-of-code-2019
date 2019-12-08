@@ -42,3 +42,9 @@ then sent that array to check against a pattern set for a clean pair of doubles.
 I was sick this day, and hit hardest after 7. I spent about 80 minutes on this challenge, couldn't get part 1, and went to bed.
 
 I woke up the next day, still sick, but was able to finish part 1 in 3 minutes. Part 2 took a bit longer, but finally got it. I'm planning on refactoring the IntCode Computer class before tonight's challenge.
+
+### Day 06
+
+This challenge seemed much more daunting than it truly was. First turned out easy enough, related SpaceObject objects to one another via "orbits", then just counted up the results from how many parents each object had.
+
+The second challenge was oddly enough easier for me than the first part, I just applied the same logic to get a list of "YOU" and "SAN"'s path back to the COM, then found the divergence going in reverse, and added the length of the remainder of both lists together, minus 4 for you, your orbit, santa, and santa's orbit, and voila.
