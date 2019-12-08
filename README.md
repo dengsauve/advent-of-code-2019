@@ -3,6 +3,8 @@ My code used to solve the problems in Advent of Code, 2019.
 
 I've shifted my approach to this challenge; As I'm not directly competing with anyone this year, I'm working on the problems the following day instead of 9pm at night after working and whatever.
 
+Personally, I wish that these problems would be released at a more convinient time for the US. After all, who on the East Coast wants to be up until midnight to do a programming challenge?
+
 ## Notes on each challenge
 
 ### Day 01
