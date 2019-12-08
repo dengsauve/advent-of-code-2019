@@ -1,6 +1,8 @@
 # Advent of Code - 2019
 My code used to solve the problems in Advent of Code, 2019.
 
+I've shifted my approach to this challenge; As I'm not directly competing with anyone this year, I'm working on the problems the following day instead of 9pm at night after working and whatever.
+
 ## Notes on each challenge
 
 ### Day 01
