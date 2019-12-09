@@ -15,26 +15,12 @@ def get_output(amp_a, amp_b, amp_c, amp_d, amp_e, phase_sequence)
     return output_signal
 end
 
-def find_max_output(amp_a, amp_b, amp_c, amp_d, amp_e)
+def find_max_output(amp_a, amp_b, amp_c, amp_d, amp_e, phase_options)
     max_output = 0
     
-    (0..4).each do |a|
-        (0..4).each do |b|
-            next if b == a
-            (0..4).each do |c|
-                next if c == a || c == b
-                (0..4).each do |d|
-                    next if d == c || d == b || d == a
-                    (0..4).each do |e|
-                        next if e == d || e == c || e == b || e == a
-                        output_signal = get_output(amp_a, amp_b, amp_c, amp_d, amp_e, [a,b,c,d,e])
-                        if output_signal > max_output
-                            max_output = output_signal 
-                        end
-                    end
-                end
-            end
-        end
+    phase_options.permutation.to_a.each do |permutation|
+        output_signal = get_output(amp_a, amp_b, amp_c, amp_d, amp_e, permutation)
+        max_output = output_signal if output_signal > max_output
     end
 
     return max_output
@@ -49,9 +35,10 @@ def part_one(input)
     #phase_sequence = [4,3,2,1,0]
     #phase_sequence = [0,1,2,3,4]
     #phase_sequence = [1,0,4,3,2]
+    phase_options = [0,1,2,3,4]
 
     #puts get_output(amp_a, amp_b, amp_c, amp_d, amp_e, phase_sequence)
-    puts find_max_output(amp_a, amp_b, amp_c, amp_d, amp_e)
+    puts find_max_output(amp_a, amp_b, amp_c, amp_d, amp_e, phase_options)
 end
 
 def part_two(input)
