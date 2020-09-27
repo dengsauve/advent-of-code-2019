@@ -1,4 +1,8 @@
 ##
+# SpaceImage is a proprietary format for storing layered images
+require_relative 'space_image.rb'
+
+##
 # IntComp is a computer that parses a comma separated string of integers and
 #   parses it into commands via the "solve" method.
 require_relative 'int_code_computer.rb'
