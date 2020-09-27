@@ -3,11 +3,17 @@
 #   parses it into commands via the "solve" method.
 class IntCodeComputer
     
+    attr_reader :stopped
+
     ##
     # Params:
     #   program: should be a comma seperated string of numbers
-    def initialize(program)
+    def initialize(program, feedback=false)
         @program = program
+        @feedback = feedback
+        @input_times = 0
+        @stopped = false
+        @pointer = 0
         @ADD = 1
         @MULTIPLY = 2
         @STORE = 3
@@ -222,10 +228,12 @@ class IntCodeComputer
     #   phase: tells
     #   b: custom variable for the second argument of the program sequence
     def solve_amp(phase, signal)
-        program = @program.dup
-        pointer = 0
+        if @feedback
+            program = @program
+        else
+            program = @program.dup
+        end
         opcode = 0
-        input_times = 0
 
         while (opcode != @STOP && pointer < program.length) do 
             puts "pointer: #{pointer}" if @DEBUG
@@ -261,6 +269,7 @@ class IntCodeComputer
 
             if(instruction == @STOP)
                 puts "STOP"
+                @stopped = true
                 break
             end
 
@@ -299,9 +308,9 @@ class IntCodeComputer
 
             if(instruction == @STORE)
                 #print "input: "
-                if input_times == 0
+                if @input_times == 0
                     number = phase
-                    input_times += 1
+                    @input_times += 1
                 else
                     number = signal
                 end
